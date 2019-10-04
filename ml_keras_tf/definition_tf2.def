@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: tensorflow/tensorflow:latest-gpu-py3-jupyter
+From: tensorflow/tensorflow:2.0.0-gpu-py3-jupyter
 
 %setup
 
@@ -37,7 +37,7 @@ jupyter notebook --no-browser
 
 %help
 
-Python 3.6.8 + keras 2.3.0 + tf 1.4 + opencv3
+Python 3.6 + keras + tf 1.4 + opencv3
 
 
 Execute:

@@ -32,7 +32,7 @@ export SINGULARITY_LOCALCACHEDIR=${HOME}/.singularity/local_cache
 
 *Example: running container with default runscript (in this case jupyter notebook)*
 
-`singularity run --nv  ml_keras_tf.sif
+`singularity run --nv  ml_keras_tf.sif`
 
 *Example: running container with a custom command*
 
