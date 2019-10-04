@@ -25,6 +25,9 @@ export CUDA_DEVICE_ORDER="PCI_BUS_ID"
 export CUDA_VISIBLE_DEVICES="3"
 
 %runscript
+echo "Running juyter notebook. Use exec or shell for other COMMANDS."
+
+jupyter notebook --no-browser
 
 %startscript
 
@@ -34,4 +37,12 @@ export CUDA_VISIBLE_DEVICES="3"
 
 %help
 
-singularity shell --nv /
+Execute:
+
+singularity exec --nv ml_keras_tf.sif COMMAND
+
+OR
+
+singularity shell --nv ml_keras_tf.sif
+
+

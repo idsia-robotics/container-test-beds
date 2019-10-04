@@ -30,19 +30,20 @@ Build the image:
 
 Once it's ready, execute the image or run it in interactive (`shell`) mode:
 
-*Example running jupyter from inside the container*
+*Example: running container with default runscript (in this case jupyter notebook)*
 
+`singularity run --nv  ml_keras_tf.sif
 
-`singularity exec --nv --bind  ml_keras_tf.sif jupyter notebook --no-browser`
+*Example: running container with a custom command*
 
+`singularity exec --nv ml_keras_tf.sif jupyter notebook --no-browser`
 
 > NOTE: By default singularity binds the directories `$HOME`, `/tmp`, `/proc`, `/sys`, and `/dev`. So that you can modify the files wher your permissions (as user) apply.
 
-
-*Example running jupyter from inside the containethe container in shell mode*
-
+*Example: running a command from inside the container --in shell mode--*
 
 `singularity shell --nv --bind data:/data ml_keras_tf.sif`
+`jupyter notebook --no-browser`
 
 This will open a shell inside the container. Additionally, we can add extra bindings using `--bind`. In this example, the folder `data` in our current working directory is bind to the folder `/data` in the containers file system.
 
