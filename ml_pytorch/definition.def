@@ -31,6 +31,7 @@ export CUDA_VISIBLE_DEVICES="3"
 echo "Running juyter notebook. Use exec or shell for other COMMANDS."
 
 jupyter notebook --no-browser
+# remember that temporary runtime files (while executing jupyter) are stored in ~/.local/share/jupyter/ 
 
 %startscript
 
