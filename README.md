@@ -20,15 +20,15 @@ export SINGULARITY_LOCALCACHEDIR=${HOME}/.singularity/local_cache
 
 #### keras + tensorflow
 
-Move to the definiton file (`definiton.def`) folder:
+1. Move to the definiton file (`definiton.def`) folder:
 
 `cd ml_keras_tf`
 
-Build the image:
+2. Build the image:
 
 `singularity build --fakeroot ml_keras_tf.sif definition.def`
 
-Once it's ready, execute the image or run it in interactive (`shell`) mode:
+3. Once it's ready, run the container:
 
 *Example: running container with default runscript (in this case jupyter notebook)*
 
@@ -49,7 +49,7 @@ This will open a shell inside the container. Additionally, we can add extra bind
 
 > For more information refer to singularity user's guide https://sylabs.io/guides/3.4/user-guide/quick_start.html
 
-*Modifying the container image*
+### Modifying the container image
 
 You can do so by: mounting the container in `sandbox` mode and rebuilding once it is ready; using the `writable` mode; or by modifying the `definition.def` file and rebuilding the image.
 
