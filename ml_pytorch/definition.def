@@ -1,0 +1,35 @@
+Bootstrap: docker
+From: nvcr.io/nvidia/pytorch:19.09-py3
+
+%setup
+
+%files
+
+%environment
+
+%post
+
+apt-get update && apt-get -y install git wget nano
+
+# done this way because pytoch image is installed that way
+#python3 install --upgrade pip
+
+/opt/conda/bin/conda install -y setuptools six numpy h5py tqdm matplotlib
+/opt/conda/bin/conda install -y pandas scikit-learn scikit-image seaborn
+
+#mkdir /ws
+cd /workspace
+
+%environment
+
+%runscript
+
+%startscript
+
+%test
+
+%labels
+
+%help
+
+When binding, bind to /ws
