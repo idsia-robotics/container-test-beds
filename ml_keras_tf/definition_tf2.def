@@ -13,9 +13,8 @@ export DEBIAN_FRONTEND=noninteractive
 
 apt-get update && apt-get -y install git wget nano python3-pip python3-opencv
 
-# done this way because pytoch image is installed that way
-
-python3 -m pip install h5py tqdm matplotlib keras pandas scikit-learn scikit-image seaborn 
+# avoid mixing pips
+python3 -m pip install h5py tqdm matplotlib pandas scikit-learn scikit-image seaborn 
 
 #cd /workspace
 
@@ -37,7 +36,7 @@ jupyter notebook --no-browser
 
 %help
 
-Python 3.6 + keras + tf 1.4 + opencv3
+Python 3.6 + tf 2.0 (with keras API) + opencv3
 
 
 Execute:

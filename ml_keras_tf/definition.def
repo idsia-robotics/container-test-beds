@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: tensorflow/tensorflow:latest-gpu-py3-jupyter
+From: tensorflow/tensorflow:1.14.0-gpu-py3-jupyter
 
 %setup
 
@@ -13,8 +13,7 @@ export DEBIAN_FRONTEND=noninteractive
 
 apt-get update && apt-get -y install git wget nano python3-pip python3-opencv
 
-# done this way because pytoch image is installed that way
-
+# avoid mixing pips
 python3 -m pip install h5py tqdm matplotlib keras pandas scikit-learn scikit-image seaborn 
 
 #cd /workspace
