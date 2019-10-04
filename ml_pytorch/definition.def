@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: nvcr.io/nvidia/pytorch:19.09-py3
+From: nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
 
 %setup
 
@@ -9,20 +9,28 @@ From: nvcr.io/nvidia/pytorch:19.09-py3
 
 %post
 
-apt-get update && apt-get -y install git wget nano
+export DEBIAN_FRONTEND=noninteractive
 
-# done this way because pytoch image is installed that way
-#python3 install --upgrade pip
+apt-get update && apt-get -y install git wget nano python3 python3-pip python3-opencv
 
-/opt/conda/bin/conda install -y setuptools six numpy h5py tqdm matplotlib
-/opt/conda/bin/conda install -y pandas scikit-learn scikit-image seaborn
+# avoid mixing pips
+# install torch
+python3 -m pip install https://download.pytorch.org/whl/cu100/torch-1.0.1.post2-cp36-cp36m-linux_x86_64.whl
+python3 -m pip install torchvision
 
-#mkdir /ws
-cd /workspace
+# install common tools
+python3 -m pip install jupyter h5py tqdm matplotlib pandas scikit-learn scikit-image seaborn 
+
 
 %environment
+export LC_ALL=C
+export CUDA_DEVICE_ORDER="PCI_BUS_ID"
+export CUDA_VISIBLE_DEVICES="3"
 
 %runscript
+echo "Running juyter notebook. Use exec or shell for other COMMANDS."
+
+jupyter notebook --no-browser
 
 %startscript
 
@@ -32,4 +40,15 @@ cd /workspace
 
 %help
 
-When binding, bind to /ws
+Python 3.6 + pytorch 1.2.0 + opencv3
+
+
+Execute:
+
+singularity exec --nv ml_pytorch.sif COMMAND
+
+OR
+
+singularity shell --nv ml_pytorch.sif
+
+
