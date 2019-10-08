@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: tensorflow/tensorflow:1.14.0-gpu-py3-jupyter
+From: ros:dashing-ros-core-bionic
 
 %setup
 
@@ -14,19 +14,22 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get update && apt-get -y install git wget nano python3-pip python3-opencv
 
 # avoid mixing pips
-python3 -m pip install h5py tqdm matplotlib keras pandas scikit-learn scikit-image seaborn 
-python3 -m pip install line_profiler memory_profiler
+#python3 -m pip install h5py tqdm matplotlib keras pandas scikit-learn scikit-image seaborn 
+
 #cd /workspace
 
 %environment
-export LC_ALL=C
+# when using the gui in gazebo, remember to set
+#export LC_ALL=C
+#unset LANGUAGE
+
 export CUDA_DEVICE_ORDER="PCI_BUS_ID"
 export CUDA_VISIBLE_DEVICES="3"
 
 %runscript
 echo "Running juyter notebook. Use exec or shell for other COMMANDS."
 
-jupyter notebook --no-browser
+#jupyter notebook --no-browser
 
 %startscript
 
@@ -36,15 +39,4 @@ jupyter notebook --no-browser
 
 %help
 
-Python 3.6.8 + keras 2.3.0 + tf 1.4 + opencv3
-
-
-Execute:
-
-singularity exec --nv ml_keras_tf.sif COMMAND
-
-OR
-
-singularity shell --nv ml_keras_tf.sif
-
-
+ROS2
