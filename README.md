@@ -55,3 +55,39 @@ You can do so by: mounting the container in `sandbox` mode and rebuilding once i
 
 > For more information refer to singularity user's guide https://sylabs.io/guides/3.4/user-guide/quick_start.html
 
+
+### Podman
+
+Currently, there is a basic definition file to defined an image based on ubuntu that includes python 3.
+
+> Note: podman share a quasi identical CLI as docker. So if you have docker installed you can replace `podman` for `docker`. Only build requires an extra `.` at the end of this instruction call.
+
+1. Move to `podman/ubuntu-python`
+
+2. Build the image
+
+`podman build -f Definitionfile -t ubuntu18_10-python3`
+
+3. Run the image (with podman (or docker) in an interactive shell)
+
+`podman run -it -rm localhost/ubuntu18_10-python3`
+
+>NOTE: podman attaches localhost to local images
+
+Test it
+
+```
+cat /etc/lsb-release
+exit
+
+```
+
+Run the image (with a specific command an remove the container when it is done)
+
+`podman run -rm localhost/ubuntu18_10-python3 bash -c "cat /etc/lsb-release"`
+
+Run the image (in an interactive shell binding an external folder) the user parameter is to properly add permissions when modifying files
+
+`podman run -rm -it -v "$(pwd)"/some_folder:/development/ws:z localhost/ubuntu18_10-python3`
+
+> `:z` option is only for selinux issue

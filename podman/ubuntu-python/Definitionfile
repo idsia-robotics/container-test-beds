@@ -18,22 +18,3 @@ RUN mkdir -p /development/ws
 # can be a more specific (non interactive command)
 CMD bash
 
-# "build with podman (or docker)"
-# podman build -f Definitionfile -t ubuntu18_10-python3
-
-# "run with podman (or docker) in an interactive shell"
-# podman run -it -rm localhost/ubuntu18_10-python3 
-# "(NOTE: podman attaches localhost to local images)"
-#
-# "test it "
-# cat /etc/lsb-release
-# "exit"
-# exit
-
-# "run with podman (or docker) with a specific command an remove the container when it is dne"
-# podman run -rm localhost/ubuntu18_10-python3 bash -c "cat /etc/lsb-release"
-
-# "run with podman (or docker) in an interactive shell binding an external folder
-# "the user parameter is to properly add permissions when modifying files"
-# podman run -rm -it -v "$(pwd)"/some_folder:/development/ws:z localhost/ubuntu18_10-python3
-# ":z option is only for selinux issue"
