@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
+From: nvidia/cuda:10.2-cudnn7-devel-ubuntu18.04
 
 %setup
 
@@ -11,45 +11,18 @@ From: nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
 
 export DEBIAN_FRONTEND=noninteractive
 
-apt-get update && apt-get -y install git wget nano python3 python3-pip python3-opencv
+apt update && apt -y install git wget nano python3 python3-pip htop 
 
-# avoid mixing pips
-# install torch
-python3 -m pip install https://download.pytorch.org/whl/cu100/torch-1.0.1.post2-cp36-cp36m-linux_x86_64.whl
-python3 -m pip install torchvision
+# here I left some packages that can be useful, change them with what you need/prefer
 
-# install common tools
-python3 -m pip install jupyter h5py tqdm matplotlib pandas scikit-learn scikit-image seaborn 
-
+python3 -m pip install jupyter tqdm matplotlib pandas scikit-learn seaborn h5py scipy datetime numpy
+python3 -m pip install torchsummary torch torchvision
 
 %environment
 export LC_ALL=C
-export CUDA_DEVICE_ORDER="PCI_BUS_ID"
-export CUDA_VISIBLE_DEVICES="3"
 
 %runscript
-echo "Running juyter notebook. Use exec or shell for other COMMANDS."
-
-jupyter notebook --no-browser
-# remember that temporary runtime files (while executing jupyter) are stored in ~/.local/share/jupyter/ 
-
 %startscript
-
 %test
-
 %labels
-
 %help
-
-Python 3.6 + pytorch 1.2.0 + opencv3
-
-
-Execute:
-
-singularity exec --nv ml_pytorch.sif COMMAND
-
-OR
-
-singularity shell --nv ml_pytorch.sif
-
-
